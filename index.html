@@ -35,6 +35,9 @@
         // Add a marker with the custom icon
         var marker = L.marker([39.705536, -105.105085], { icon: customIcon }).addTo(map);
         marker.bindPopup("<b>Another great spot!</b><br>There are nearby lakes for long walks.");
+        
+         var marker = L.marker([39.694838, -105.083628], { icon: customIcon }).addTo(map);
+        marker.bindPopup("<b>Alameda High School</b><br>This was my high school's rival.");
 
         // Add circles
         var circle1 = L.circle([39.694375, -105.117016], {
@@ -49,7 +52,7 @@
             color: 'white',
             fillColor: 'gray',
             fillOpacity: 0.3,
-            radius: 400
+            radius: 600
         }).addTo(map);
         circle2.bindPopup("A great mall for those who have not been!");
 
@@ -102,4 +105,5 @@
     </script>
 </body>
 </html>
+
 
