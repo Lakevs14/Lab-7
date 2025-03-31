@@ -24,7 +24,7 @@
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
-        var marker = L.marker([51.5, -0.09]).addTo(map);
+        var marker = L.marker([39.705536, -105.105085]).addTo(map);
         var circle = L.circle([51.508, -0.11], {
     color: 'red',
     fillColor: '#f03',
@@ -32,15 +32,16 @@
     radius: 500
 }).addTo(map);
 var polygon = L.polygon([
-    [39.705998, -105.089314],
-    [39.70613, -105.085881],
-    [39.703175, -105.089464]
+    [39.706072, -105.0894],  // Top-left
+    [39.706072, -105.0854],  // Top-right
+    [39.703072, -105.0854],  // Bottom-right
+    [39.703072, -105.0894]   // Bottom-left
 ]).addTo(map);
-marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+marker.bindPopup("<b>Another great spot!</b><br>There are nearby lakes for long walks.").openPopup();
 circle.bindPopup("I am a circle.");
-polygon.bindPopup("I am a polygon.");
+polygon.bindPopup("This park is next to a great mall! Visit it sometime.");
 var popup = L.popup()
-    .setLatLng([39.691635, -105.10972])
+    .setLatLng([39.68394, -105.108047])
     .setContent("This is where I walk my dog!")
     .openOn(map);
 
