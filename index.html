@@ -18,11 +18,13 @@
         // Create and initialize the map
         var map = L.map('map').setView([39.698239, -105.098433], 14);
 
+        // Add Enhanced Contrast Dark Base Map from Esri
         // Add Esri World Imagery tiles
-        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://www.esri.com/">Esri</a>',
-            maxZoom: 19
-        }).addTo(map);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 16,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+       
 
         // Create a custom icon
         var customIcon = L.icon({
@@ -33,11 +35,11 @@
         });
 
         // Add a marker with the custom icon
-        var marker = L.marker([39.705536, -105.105085], { icon: customIcon }).addTo(map);
-        marker.bindPopup("<b>Another great spot!</b><br>There are nearby lakes for long walks.");
+        var marker1 = L.marker([39.705536, -105.105085], { icon: customIcon }).addTo(map);
+        marker1.bindPopup("<b>Another great spot!</b><br>There are nearby lakes for long walks.");
         
-         var marker = L.marker([39.694838, -105.083628], { icon: customIcon }).addTo(map);
-        marker.bindPopup("<b>Alameda High School</b><br>This was my high school's rival.");
+        var marker2 = L.marker([39.694838, -105.083628], { icon: customIcon }).addTo(map);
+        marker2.bindPopup("<b>Alameda High School</b><br>This was my high school's rival.");
 
         // Add circles
         var circle1 = L.circle([39.694375, -105.117016], {
@@ -91,6 +93,11 @@
             .setLatLng([39.68394, -105.108047])
             .setContent("This is where I walk my dog!")
             .addTo(map);
+            
+        var popup3 = L.popup()
+            .setLatLng([39.694772, -105.102768])
+            .setContent("<b>Lakewood, Colorado</b>")
+            .addTo(map);
 
         // Add a click event to show popup at clicked location
         var popup = L.popup();
@@ -105,5 +112,3 @@
     </script>
 </body>
 </html>
-
-
