@@ -18,44 +18,79 @@
         // Create and initialize the map
         var map = L.map('map').setView([39.698239, -105.098433], 14);
 
-        // Add OpenStreetMap tiles
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        // Add Esri World Imagery tiles
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://www.esri.com/">Esri</a>',
+            maxZoom: 19
         }).addTo(map);
 
-        // Add a marker
-        var marker = L.marker([39.705536, -105.105085]).addTo(map);
-        marker.bindPopup("<b>Another great spot!</b><br>There are nearby lakes for long walks.").openPopup();
+        // Create a custom icon
+        var customIcon = L.icon({
+            iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png', // Replace with your icon URL
+            iconSize: [32, 32], // Size of the icon [width, height]
+            iconAnchor: [16, 32], // Anchor point adjusted for size
+            popupAnchor: [0, -32] // Popup position relative to the icon
+        });
 
-        // Add a circle
-        var circle = L.circle([39.694375, -105.117016], {
-            color: 'gray',
+        // Add a marker with the custom icon
+        var marker = L.marker([39.705536, -105.105085], { icon: customIcon }).addTo(map);
+        marker.bindPopup("<b>Another great spot!</b><br>There are nearby lakes for long walks.");
+
+        // Add circles
+        var circle1 = L.circle([39.694375, -105.117016], {
+            color: 'white',
+            fillColor: 'rgb(120,216,230)',
+            fillOpacity: 0.4,
+            radius: 450
+        }).addTo(map);
+        circle1.bindPopup("The childhood park that I used to run around all the time!");
+
+        var circle2 = L.circle([39.708309, -105.078049], {
+            color: 'white',
             fillColor: 'gray',
-            fillOpacity: 0.1,
-            radius: 500
+            fillOpacity: 0.3,
+            radius: 400
         }).addTo(map);
-        circle.bindPopup("The childhood park that I used to run around all the time!");
+        circle2.bindPopup("A great mall for those who have not been!");
 
-        // Add a polygon
-        var polygon = L.polygon([
+        // Add polygons
+        var polygon1 = L.polygon([
             [39.706072, -105.0894],  // Top-left
             [39.706072, -105.0854],  // Top-right
             [39.703072, -105.0854],  // Bottom-right
             [39.703072, -105.0894]   // Bottom-left
         ], {
-            color: 'black',
-            fillColor: 'black',
-            fillOpacity: 0.1
+            color: 'rgb(120,238,144)',
+            fillColor: 'white',
+            fillOpacity: 0.5
         }).addTo(map);
-        polygon.bindPopup("This park is next to a great mall! Visit it sometime.");
+        polygon1.bindPopup("This park is next to a great mall! Visit it sometime.");
 
-        // Add a standalone popup
-        var popup = L.popup()
+        var polygon2 = L.polygon([
+            [39.688398, -105.118647],  // Top-left
+            [39.682421, -105.118647],  // Top-right
+            [39.682421, -105.112295],  // Bottom-right
+            [39.688398, -105.112295]   // Bottom-left
+        ], {
+            color: 'rgb(120,216,230)',
+            fillColor: 'rgb(173,216,230)',
+            fillOpacity: 0.2
+        }).addTo(map);
+        polygon2.bindPopup("This park is next to the one I walk my dog, making it convenient for long distances.");
+
+        // Add standalone popups
+        var popup1 = L.popup()
+            .setLatLng([39.698206, -105.081482])
+            .setContent("This road is very busy during rush hours!")
+            .addTo(map);
+
+        var popup2 = L.popup()
             .setLatLng([39.68394, -105.108047])
             .setContent("This is where I walk my dog!")
-            .openOn(map);
+            .addTo(map);
 
         // Add a click event to show popup at clicked location
+        var popup = L.popup();
         function onMapClick(e) {
             popup
                 .setLatLng(e.latlng)
@@ -67,3 +102,4 @@
     </script>
 </body>
 </html>
+
